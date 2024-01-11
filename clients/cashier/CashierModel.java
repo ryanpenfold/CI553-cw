@@ -21,6 +21,8 @@ public class CashierModel extends Observable
   private Basket      theBasket  = null;            // Bought items
 
   private String      pn = "";                      // Product being processed
+  
+  private int 		  cn = 1;						// Customer number.
 
   private StockReadWriter theStock     = null;
   private OrderProcessing theOrder     = null;
@@ -116,7 +118,9 @@ public class CashierModel extends Observable
           makeBasketIfReq();                    //  new Basket ?
           theBasket.add( theProduct );          //  Add to bought
           theAction = "Purchased " +            //    details
-                  theProduct.getDescription();  //
+                  theProduct.getDescription() + //
+                  " for Customer No." +         //
+                  Integer.toString(cn);         //
         } else {                                // F
           theAction = "!!! Not in stock";       //  Now no stock
         }
@@ -149,6 +153,8 @@ public class CashierModel extends Observable
       theAction = "Next customer";            // New Customer
       theState = State.process;               // All Done
       theBasket = null;
+      
+      cn++;
     } catch( OrderException e )
     {
       DEBUG.error( "%s\n%s", 

@@ -21,7 +21,7 @@ import java.util.Observer;
 public class DisplayView extends Canvas implements Observer
 {
   private static final long serialVersionUID = 1L;
-  private Font font = new Font("Monospaced",Font.BOLD,24);
+  private Font font = new Font("Arial", Font.PLAIN,24);
   private int H = 300;         // Height of window 
   private int W = 400;         // Width  of window 
   private String textToDisplay = "";

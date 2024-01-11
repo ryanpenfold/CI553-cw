@@ -149,11 +149,11 @@ public class CustomerModel extends Observable
 					  break;
 					  
 				  }
-			  }
-		} catch (StockException e) {
+			}
+		  } catch (StockException e) {
 			// TODO Auto-generated catch block
-			DEBUG.error("Error", e);
-		}
+			DEBUG.error("Stock Error - ", e);
+		  }
 	  }
   }
   
