@@ -61,8 +61,38 @@ public class CustomerModel extends Observable
   {
     theBasket.clear();                          // Clear s. list
     String theAction = "";
-    pn  = productNum.trim();                    // Product no.
+    try {
+    	pn  = productNum.trim();                    // Product no.
+    } catch (Exception e) {
+    	boolean keepLoop = true;					// Infinite Loop
+    	int i = 0;									// Iterator (for Product List)
+    	while(keepLoop == true) {
+    		i++;
+    		String s = Integer.toString(i);
+    		try {
+				keepLoop = theStock.exists(s);
+			} catch (StockException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+    		if (keepLoop == true) {
+    			Product p;
+				try {
+					p = theStock.getDetails(s);
+					System.out.println(p.getDescription());
+					if(p.getDescription() == productNum) {
+	    				pn = s.trim();
+	    				keepLoop = false;
+	    			}
+				} catch (StockException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+    		}
+    	}
+    }
     int    amount  = 1;                         //  & quantity
+    
     try
     {
       if ( theStock.exists( pn ) )              // Stock Exists?
@@ -94,7 +124,39 @@ public class CustomerModel extends Observable
     }
     setChanged(); notifyObservers(theAction);
   }
+  
+  /**
+   * Find the stock by name
+   */
 
+  public void getStockIdFromName(String name) {
+	  String pn;
+	  for(int i = 0; i < 50; i++) {
+		  if (i < 10) {
+			  pn = "000" + Integer.toString(i);
+		  } else if (i < 100) {
+			  pn = "00" + Integer.toString(i);
+		  } else if (i < 1000) {
+			  pn = "0" + Integer.toString(i);
+		  } else {
+			  pn = Integer.toString(i);
+		  }
+		  try {
+			if (theStock.exists(pn)) {
+				  Product pr = theStock.getDetails(pn);
+				  if (pr.getDescription().contains(name)) {
+					  doCheck(pn);
+					  break;
+					  
+				  }
+			  }
+		} catch (StockException e) {
+			// TODO Auto-generated catch block
+			DEBUG.error("Error", e);
+		}
+	  }
+  }
+  
   /**
    * Clear the products from the basket
    */

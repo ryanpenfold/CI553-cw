@@ -35,6 +35,9 @@ public class CustomerView implements Observer
   private final JButton     theBtCheck = new JButton( Name.CHECK );
   private final JButton     theBtClear = new JButton( Name.CLEAR );
 
+  // New Additions for UI
+  private final JTextField prodName = new JTextField();
+  
   private Picture thePicture = new Picture(80,80);
   private StockReader theStock   = null;
   private CustomerController cont= null;

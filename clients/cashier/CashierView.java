@@ -26,6 +26,7 @@ public class CashierView implements Observer
 
   private final JLabel      theAction  = new JLabel();
   private final JTextField  theInput   = new JTextField();
+  // private final JTextField  itemName   = new JTextField(); - Wrong Area
   private final JTextArea   theOutput  = new JTextArea();
   private final JScrollPane theSP      = new JScrollPane();
   private final JButton     theBtCheck = new JButton( CHECK );
@@ -60,7 +61,7 @@ public class CashierView implements Observer
     rootWindow.setSize( W, H );                     // Size of Window
     rootWindow.setLocation( x, y );
 
-    Font f = new Font("Monospaced",Font.PLAIN,12);  // Font f is
+    Font f = new Font("Arial",Font.PLAIN,12);  // Font f is
 
     theBtCheck.setBounds( 16, 25+60*0, 80, 40 );    // Check Button
     theBtCheck.addActionListener(                   // Call back code
@@ -80,11 +81,11 @@ public class CashierView implements Observer
     theAction.setBounds( 110, 25 , 270, 20 );       // Message area
     theAction.setText( "" );                        // Blank
     cp.add( theAction );                            //  Add to canvas
-
+    
     theInput.setBounds( 110, 50, 270, 40 );         // Input Area
     theInput.setText("");                           // Blank
     cp.add( theInput );                             //  Add to canvas
-
+    
     theSP.setBounds( 110, 100, 270, 160 );          // Scrolling pane
     theOutput.setText( "" );                        //  Blank
     theOutput.setFont( f );                         //  Uses font  

@@ -19,7 +19,7 @@ import java.util.*;
  * Currently being picked<BR>
  * Waiting to be collected<BR></B>
  * @author  Mike Smith University of Brighton
- * @version 3.0
+ * @version 3.1
  */
  
 public class Order implements OrderProcessing

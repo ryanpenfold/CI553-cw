@@ -27,7 +27,11 @@ public class CustomerController
    */
   public void doCheck( String pn )
   {
-    model.doCheck(pn);
+    if (pn.startsWith("#") == true) {
+    	model.doCheck(pn.replaceFirst("#", ""));
+    } else {
+    	model.getStockIdFromName(pn);
+    }
   }
 
   /**
